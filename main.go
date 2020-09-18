@@ -2,25 +2,16 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os/exec"
 	"runtime"
-	"time"
 )
 
-type timeJSON struct {
-	Year   string
-	Month  string
-	Day    string
-	Hour   string
-	Minute string
-	Second string
-}
-
 func main() {
+	storage := NewStorage()
+
 	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
 		http.Redirect(w, req, "/index.html", 308)
 	})
@@ -37,17 +28,8 @@ func main() {
 	})
 
 	http.HandleFunc("/data.json", func(w http.ResponseWriter, req *http.Request) {
-		log.Println("Retrieving Data")
-		now := time.Now()
-		date := timeJSON{
-			Year:   fmt.Sprintf("%04d", now.Year()),
-			Month:  fmt.Sprintf("%02d", now.Month()),
-			Day:    fmt.Sprintf("%02d", now.Day()),
-			Hour:   fmt.Sprintf("%02d", now.Hour()),
-			Minute: fmt.Sprintf("%02d", now.Minute()),
-			Second: fmt.Sprintf("%02d", now.Second())}
 		w.Header().Set("content-type", "text/json")
-		json.NewEncoder(w).Encode(date)
+		json.NewEncoder(w).Encode(storage)
 	})
 
 	log.Println("Start Server...")
