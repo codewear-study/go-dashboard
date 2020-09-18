@@ -2,9 +2,38 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Client</title>
     </head>
     <body>
+        <div class="container">
+            <h2>Utilization</h2>
+            <div>CPU</div>
+            <div class="progress">
+                <div id="progress-cpu-utilization" class="progress-bar" style="width: 0%"></div>
+            </div>
+            <div>Memory</div>
+            <div class="progress">
+                <div id="progress-memory-utilization" class="progress-bar" style="width: 0%"></div>
+            </div>
+            <br />
+            <h2>Temperature</h2>
+            <div class="row">
+                <div class="col-sm-4 align-center">
+                    <div id="temperature-cpu" class="row display-1 text-center">0</div>
+                    <div class="row display-4 text-center">CPU</div>
+                </div>
+                <div class="col-sm-4">
+                    <div id="temperature-memory" class="row display-1 text-center">0</div>
+                    <div class="row display-4 text-center">Memory</div>
+                </div>
+                <div class="col-sm-4">
+                    <div id="temperature-room" class="row display-1 text-center">0</div>
+                    <div class="row display-4 text-center">Room</div>
+                </div>
+            </div>
+        </div>
         <script src="index.js"></script>
     </body>
 </html>
